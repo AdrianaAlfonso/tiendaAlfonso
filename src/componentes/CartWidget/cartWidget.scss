@@ -1,0 +1,142 @@
+@use '../../styles/mixins.scss' as *;
+
+.cart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 350;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+
+  h2 {
+    color: black;
+    margin: 0;
+    font-size: 18px;
+  }
+
+  button {
+    color: black;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    color: black;
+    &-close {
+      height: fit-content;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+  }
+
+  &__items {
+    max-height: 400px;
+    overflow-y: auto;
+
+    &__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      &__item {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid lightgray;
+
+        &-image {
+          width: 50px;
+          height: 50px;
+        }
+
+        &-info {
+          flex: 1;
+          margin-left: 10px;
+
+          h3 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+          }
+
+          p {
+            margin: 0;
+            color: lightcoral;
+          }
+
+          &-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            button {
+              background-color: darkgray;
+              color: white;
+              border: none;
+              padding: 5px;
+              cursor: pointer;
+
+              &:hover {
+                background-color: darkgray;
+              }
+            }
+
+            span {
+              margin: 0 10px;
+              color: black;
+            }
+          }
+        }
+
+        &-total {
+          margin-left: 10px;
+
+          h3 {
+            margin: 0;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  &__total {
+    padding: 10px 0;
+    border-top: 1px solid lightgray;
+    // text-align: right;
+    display: flex;
+    justify-content: space-between;
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+
+    button {
+      background-color: darkgray;
+      color: black;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: darkblue;
+      }
+    }
+  }
+}

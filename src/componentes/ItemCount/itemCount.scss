@@ -1,0 +1,17 @@
+.producto-contador {
+  //   background-color: blueviolet;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  button {
+    color: #000;
+    border: 1px solid black;
+    background-color: transparent;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+}

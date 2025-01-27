@@ -1,15 +1,20 @@
-import React from "react";
-import Item from "../Item/Item";
+import Item from '../Item/Item';
+import './itemList.scss';
+import PropTypes from 'prop-types';
 
 const ItemList = ({ items }) => {
   return (
-    <div>
+    <div className='lista-productos'>
       {items?.length &&
         items.map((item) => {
-          return <Item item={item} />;
+          return <Item item={item} key={item.id} />;
         })}
     </div>
   );
+};
+
+ItemList.propTypes = {
+  items: PropTypes.array.isRequired,
 };
 
 export default ItemList;

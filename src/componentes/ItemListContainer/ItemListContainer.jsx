@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import ItemList from "../ItemList/ItemList";
-import { getAllProducts } from "../../apis/productsApi";
+import { useEffect, useState } from 'react';
+import './itemListContainer.scss';
+import ItemList from '../ItemList/ItemList';
+import { getAllProducts } from '../../apis/productsApi';
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState(null);
@@ -11,7 +12,11 @@ const ItemListContainer = () => {
     });
   }, []);
 
-  return <div>{products && <ItemList items={products} />}</div>;
+  return (
+    <div className='lista-productos-contenedor'>
+      {products && <ItemList items={products} />}
+    </div>
+  );
 };
 
 export default ItemListContainer;
