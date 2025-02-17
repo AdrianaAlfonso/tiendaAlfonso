@@ -7,7 +7,7 @@ const ItemList = ({ items }) => {
     <div className='lista-productos'>
       {items?.length &&
         items.map((item) => {
-          return <Item item={item} key={item.id} />;
+          return <Item item={item} key={`${item.id}`} />;
         })}
     </div>
   );

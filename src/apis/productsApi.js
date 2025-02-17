@@ -1,19 +1,34 @@
-const baseUrl = 'https://api.escuelajs.co/api/v1/products';
+import { createItemDoc, getAllFirebaseItem, getFirebaseItem } from './firebase';
+
+const firebaseCollectionName = 'products';
 
 export const getAllProducts = async () => {
-  console.log('ADRIANA=> getAllProducts');
-  const products = await fetch(baseUrl).then((res) => res.json());
-
-  // esto lo puse para solucionar un error en la api que estoy usando
-  // a veces viene un mal el formato de la lista
-  return products.filter(
-    (product) => product.images.length > 0 && !product.images[0].includes('[')
-  );
+  const products = await getAllFirebaseItem(firebaseCollectionName);
+  return products;
 };
 
 export const getProductById = async (id) => {
-  const product = await fetch(`${baseUrl}/${id}`).then((res) => res.json());
-  console.log('MARTIN_LOG=> getProductById', product);
+  const product = await getFirebaseItem(firebaseCollectionName, id);
 
   return product;
+};
+
+export const createPurchase = async (cart) => {
+  // transformamos el carrito en un pago
+  const purchase = {
+    purchase_date: new Date().toISOString(),
+    products: cart.items.map((product) => {
+      return {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        quantity: product.quantity,
+        total: (product.price * product.quantity).toFixed(2),
+      };
+    }),
+    total: cart.totalAmount.toFixed(2),
+  };
+  console.log('AdrianaLog: createPurchase -> purchase', purchase);
+  // guardamos el pago en la base de datos
+  await createItemDoc('purchases', purchase);
 };

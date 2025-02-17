@@ -7,52 +7,55 @@ import CommonContainer from './componentes/CommonContainer/CommonContainer.jsx';
 import ProductPage from './pages/ProductPage/ProductPage.jsx';
 import ProductsPage from './pages/ProductsPage/ProductsPage.jsx';
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
+import { CartContextProvider } from './contexts/CartContext/CartContextProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <CommonContainer>
-              <HomePage />
-            </CommonContainer>
-          }
-        />
-        <Route
-          path='/productos'
-          element={
-            <CommonContainer>
-              <ProductsPage />
-            </CommonContainer>
-          }
-        />
-        <Route
-          path='/productos/:productId'
-          element={
-            <CommonContainer>
-              <ProductPage />
-            </CommonContainer>
-          }
-        />
-        <Route
-          path='/acerca'
-          element={
-            <CommonContainer>
-              <AboutPage />
-            </CommonContainer>
-          }
-        />
-        <Route
-          path='*'
-          element={
-            <CommonContainer>
-              <h1>La pagina no existe 404</h1>
-            </CommonContainer>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <CartContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <CommonContainer>
+                <HomePage />
+              </CommonContainer>
+            }
+          />
+          <Route
+            path='/productos'
+            element={
+              <CommonContainer>
+                <ProductsPage />
+              </CommonContainer>
+            }
+          />
+          <Route
+            path='/productos/:productId'
+            element={
+              <CommonContainer>
+                <ProductPage />
+              </CommonContainer>
+            }
+          />
+          <Route
+            path='/acerca'
+            element={
+              <CommonContainer>
+                <AboutPage />
+              </CommonContainer>
+            }
+          />
+          <Route
+            path='*'
+            element={
+              <CommonContainer>
+                <h1>La pagina no existe 404</h1>
+              </CommonContainer>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </CartContextProvider>
   </StrictMode>
 );
