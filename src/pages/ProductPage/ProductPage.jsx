@@ -1,11 +1,15 @@
 import { useParams } from 'react-router';
 import './productPage.scss';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getProductById } from '../../apis/productsApi';
 import formatCurrency from '../../apis/utils/formatCurrency';
+import ItemCount from '../../componentes/ItemCount/ItemCount';
+import { CartContext } from '../../contexts/CartContext/CartContext';
 
 const ProductPage = () => {
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const { addItemToCart } = useContext(CartContext);
   const params = useParams();
 
   useEffect(() => {
@@ -24,7 +28,6 @@ const ProductPage = () => {
           console.error(error);
         });
     }
-    console.log('MARTIN_LOG=> params', params);
   }, [params]);
 
   return product ? (
@@ -44,7 +47,12 @@ const ProductPage = () => {
             <p className='product-price'>{formatCurrency(product.price)}</p>
           </div>
           <div className='product-actions'>
-            <button className='product-action-button'>
+            <ItemCount stock={10} setValue={setQuantity} value={quantity} />
+            <button
+              className='product-action-button'
+              onClick={() => {
+                addItemToCart(product, quantity);
+              }}>
               Agregar al carrito
             </button>
           </div>

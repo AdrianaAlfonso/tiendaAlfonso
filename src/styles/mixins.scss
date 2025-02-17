@@ -4,4 +4,9 @@
       @content;
     }
   }
+  @if $breakpoint == md {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  }
 }
